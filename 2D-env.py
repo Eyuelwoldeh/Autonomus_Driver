@@ -29,12 +29,11 @@ class Car():
     def draw(self, screen):
         pg.draw.rect(screen, self.color, (self.x_cor, self.y_cor, self.width, self.height))
     
-
+car = Car()
 # Game loop
 running = True
 while running: 
     screen.fill(background_colour) 
-    car = Car()
 
     for event in pg.event.get():
         if event.type == pg.QUIT: 
@@ -42,7 +41,8 @@ while running:
 
     # Get pressed keys
     keys = pg.key.get_pressed()
-    car.update(keys)
+    if (keys):
+        car.update(keys)
 
     car.draw(screen)
     pg.display.flip()
