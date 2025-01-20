@@ -1,6 +1,5 @@
 import pygame as pg
 
-# Initialize Pygame
 pg.init()
 
 # Set up display
