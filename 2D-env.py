@@ -26,12 +26,30 @@ class Car():
         if keys[pg.K_DOWN]:   # Move down
             self.y_cor += self.speed
 
+    def sensors(self):
+        pass
+
     def draw(self, screen):
         pg.draw.rect(screen, self.color, (self.x_cor, self.y_cor, self.width, self.height))
-    
+
+class Border():
+    def __init__(self):
+        self.color = (250,0,0)
+
+    def draw(self, screen, start, end):
+        pg.draw.line(screen, self.color, start, end, 4)
+
+ 
 car = Car()
+
+border = Border()
+
+borders = []
 # Game loop
 running = True
+isDrawing = False
+start_cor = None
+
 while running: 
     screen.fill(background_colour) 
 
@@ -39,7 +57,24 @@ while running:
         if event.type == pg.QUIT: 
             running = False
 
-    # Get pressed keys
+        if event.type == pg.MOUSEBUTTONDOWN:
+            isDrawing = True
+            start_cor = pg.mouse.get_pos()
+
+        if event.type == pg.MOUSEBUTTONUP:
+            isDrawing = False
+            end_cor = pg.mouse.get_pos()
+            borders.append((start_cor, end_cor))
+
+
+    for start, end in borders:
+        border.draw(screen, start, end)
+
+    if isDrawing:
+        end_cor = pg.mouse.get_pos()
+        border.draw(screen, start_cor, end_cor)
+
+    # Get ressed keys
     keys = pg.key.get_pressed()
     if (keys):
         car.update(keys)
