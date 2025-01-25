@@ -32,13 +32,6 @@ class Car():
     def draw(self, screen):
         pg.draw.rect(screen, self.color, (self.x_cor, self.y_cor, self.width, self.height))
 
-class Border():
-    def __init__(self):
-        self.color = (250,0,0)
-
-    def draw(self, screen, start, end):
-        pg.draw.line(screen, self.color, start, end, 4)
-
  
 car = Car()
 
